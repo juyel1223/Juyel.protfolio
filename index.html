@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="./img/photo_2025-06-10_17-17-08.jpg" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My 3D Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #080812;
+    color: white;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 20% 30%, #45108055, transparent 35%),
+      radial-gradient(circle at 80% 70%, #092c6a55, transparent 35%);
+    z-index: -1;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 9%;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #bd75ff;
+}
+
+nav ul {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ddd;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #bd75ff;
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 10%;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h4 {
+    color: #bd75ff;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.hero-content h1 {
+    font-size: clamp(40px, 6vw, 70px);
+    line-height: 1.15;
+    font-weight: 800;
+}
+
+.hero-content h1 span {
+    background: linear-gradient(90deg, #bd75ff, #4da6ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-content p {
+    color: #aaa;
+    line-height: 1.8;
+    margin: 25px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 30px;
+    background: linear-gradient(90deg, #8e35ff, #456bff);
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 0 25px #2d82b366;
+    transition: .4s;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 35px #7150a5;
+}
+
+/* 3D PROFILE */
+
+.profile {
+    width: 310px;
+    height: 390px;
+    flex-shrink: 0;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(-15deg) rotateX(8deg);
+    transition: .5s;
+}
+
+.profile:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+.profile-card {
+    position: absolute;
+    inset: 0;
+    border: 1px solid #a45aff77;
+    background: linear-gradient(145deg, #29144d, #101020);
+    border-radius: 25px;
+    box-shadow: 15px 20px 50px #0008,
+                0 0 35px #903aff44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transform: translateZ(35px);
+}
+
+.avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #bd75ff, #456bff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 65px;
+    box-shadow: 0 0 35px #a855ff99;
+    margin-bottom: 25px;
+}
+
+.profile-card h2 {
+    font-size: 25px;
+}
+
+.profile-card p {
+    color: #b9a5d9;
+    margin-top: 8px;
+}
+
+.floating {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
+    background: #8b43ed33;
+    border: 1px solid #bd75ff;
+    backdrop-filter: blur(10px);
+    animation: float 4s ease-in-out infinite;
+}
+
+.float1 {
+    top: -30px;
+    right: -30px;
+}
+
+.float2 {
+    bottom: -25px;
+    left: -30px;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(15deg); }
+}
+
+/* SECTIONS */
+
+section {
+    padding: 90px 10%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 50px;
+}
+
+.section-title span {
+    color: #bd75ff;
+}
+
+.about {
+    text-align: center;
+    color: #aaa;
+    max-width: 750px;
+    margin: auto;
+    line-height: 2;
+}
+
+/* SKILLS */
+
+.skills-container,
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.skill, .project {
+    padding: 30px;
+    background: linear-gradient(145deg, #19152a, #10101c);
+    border: 1px solid #ffffff15;
+    border-radius: 20px;
+    transition: .4s;
+    transform-style: preserve-3d;
+}
+
+.skill:hover, .project:hover {
+    transform: perspective(800px) rotateX(5deg) rotateY(-5deg) translateY(-10px);
+    border-color: #a45aff;
+    box-shadow: 0 15px 35px #883cff33;
+}
+
+.skill h3, .project h3 {
+    color: #bd75ff;
+    margin-bottom: 12px;
+}
+
+.skill p, .project p {
+    color: #aaa;
+    line-height: 1.7;
+}
+
+.project-image {
+    height: 140px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #7024bb, #1e5bba);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+}
+
+/* CONTACT */
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid #ffffff15;
+    color: #888;
+}
+
+@media(max-width: 768px) {
+    nav {
+        padding: 20px 5%;
+    }
+
+    nav ul {
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 70px 7%;
+    }
+
+    .profile {
+        width: 260px;
+        height: 330px;
+        margin-top: 40px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<nav>
+    <div class="logo">PORTFOLIO.</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+
+    <div class="hero-content">
+        <h4>Hello, I'm a Creative Developer</h4>
+
+        <h1>I'm <span>JUYEL AHMED</span><br>
+        3D Web Designer</h1>
+
+        <p>
+            I create modern, creative and interactive websites
+            with stunning 3D effects and beautiful animations.
+            Welcome to my digital world!
+        </p>
+
+        <a href="#projects" class="btn">Explore My Work</a>
+    </div>
+
+    <div class="profile">
+        <div class="floating float1"></div>
+        <div class="floating float2"></div>
+
+        <div class="profile-card">
+            <div class="avatar">👨‍💻</div>
+            <h2>Your Name</h2>
+            <p>Creative Developer</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title">About <span>Me</span></h2>
+    <p class="about">
+        I am a passionate web developer who loves building
+        beautiful digital experiences. I specialize in modern
+        website design, creative interfaces, CSS animations
+        and interactive user experiences.
+    </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="section-title">My <span>Skills</span></h2>
+
+    <div class="skills-container">
+
+        <div class="skill">
+            <h3>HTML5</h3>
+            <p>Building clean and structured websites.</p>
+        </div>
+
+        <div class="skill">
+            <h3>CSS3</h3>
+            <p>Beautiful layouts, animations and 3D effects.</p>
+        </div>
+
+        <div class="skill">
+            <h3>JavaScript</h3>
+            <p>Interactive and dynamic web experiences.</p>
+        </div>
+
+        <div class="skill">
+            <h3>UI / UX</h3>
+            <p>Creating modern and user-friendly designs.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="section-title">My <span>Projects</span></h2>
+
+    <div class="projects-container">
+
+        <div class="project">
+            <div class="project-image">🌐</div>
+            <h3>3D Website</h3>
+            <p>A creative website with modern 3D effects.</p>
+        </div>
+
+        <div class="project">
+            <div class="project-image">💻</div>
+            <h3>Portfolio Design</h3>
+            <p>A modern personal portfolio website.</p>
+        </div>
+
+        <div class="project">
+            <div class="project-image">🚀</div>
+            <h3>Landing Page</h3>
+            <p>A beautiful landing page with animations.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+    <h2 class="section-title">Let's <span>Connect</span></h2>
+    <p>Have a project in mind? Let's work together!</p>
+    <a href="mailto:your@email.com" class="btn">Contact Me</a>
+</section>
+
+<footer>
+    © 2026 Your Name. All Rights Reserved.
+</footer>
+
+</body>
+</html>
